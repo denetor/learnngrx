@@ -1,3 +1,4 @@
-<ndr-values-history [values]="generatedList"></ndr-values-history>
-<div>Current value: {{ lastValue }}</div>
+<ndr-current-value [value]="lastValue"></ndr-current-value>
+<ndr-values-history [values]="generatedList" [listObservable]="linearGeneratorObservable"></ndr-values-history>
+<hr />
 <div>Values history: <span *ngFor="let value of generatedList">{{ value }} </span></div>
