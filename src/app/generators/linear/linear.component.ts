@@ -1,15 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {GeneratorService} from "../services/generator.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-linear',
-  templateUrl: './linear.component.html',
-  styleUrls: ['./linear.component.sass']
+  templateUrl: './linear.component.html'
 })
-export class LinearComponent implements OnInit {
+export class LinearComponent implements OnInit, OnDestroy {
+    linearGeneratorSubscription: any;
 
-  constructor() { }
+    constructor(
+        private readonly generatorService: GeneratorService,
+    ) {
+        console.log('LinearComponent.constructor()');
+    }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+        console.log('LinearComponent.ngOnInit()');
+        this.linearGeneratorSubscription = this.generatorService.linear().subscribe(value => {
+            console.log(value);
+        })
+    }
+
+    ngOnDestroy() {
+        console.log('LinearComponent.ngOnDestroy()');
+        this.linearGeneratorSubscription.unsubscribe();
+    }
 
 }
