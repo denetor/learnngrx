@@ -1,6 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {GeneratorService} from "../services/generator.service";
-import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-linear',
