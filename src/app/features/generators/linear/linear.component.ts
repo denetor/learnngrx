@@ -9,8 +9,6 @@ import {Observable} from "rxjs";
 export class LinearComponent implements OnInit, OnDestroy {
     linearGeneratorObservable: Observable<any> | undefined = undefined;
     linearGeneratorSubscription: any;
-    // last 10 numbers generated
-    generatedList: number[] = [];
     // last generated number
     lastValue: number | undefined = undefined;
 
@@ -22,16 +20,8 @@ export class LinearComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         console.log('LinearComponent.ngOnInit()');
-        this.generatedList = [];
         this.linearGeneratorObservable = this.generatorService.linear();
         this.linearGeneratorSubscription = this.linearGeneratorObservable.subscribe(value => {
-            // remove first item from list
-            if (this.generatedList.length >= 10) {
-                this.generatedList.shift();
-            }
-            // append new item to list
-            this.generatedList.push(value as number);
-            // save last value
             this.lastValue = value as number;
         })
     }
