@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from "@angular/core";
-import {Observable, Subscription} from "rxjs";
 
 @Component({
     selector: 'ndr-values-history',
