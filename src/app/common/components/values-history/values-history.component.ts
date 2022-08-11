@@ -18,8 +18,8 @@ export class ValuesHistoryComponent implements OnInit {
         if (this.listObservable) {
             this.listObservable.subscribe(values => {
                 this.values.push(values);
-                if (this.values.length > 10) {
-                    this.values.unshift();
+                if (this.values.length > 5) {
+                    this.values.shift();
                 }
             });
         }
