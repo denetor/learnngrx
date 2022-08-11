@@ -6,22 +6,19 @@ import {Observable, Subscription} from "rxjs";
     templateUrl: './values-history.component.html'
 })
 export class ValuesHistoryComponent implements OnInit {
-    @Input()
-    values: number[] = [];
+    _values: number[] = [];
 
     @Input()
-    listObservable: Observable<any> | undefined = undefined;
-
+    set newValue(newValue: number | undefined) {
+        if (newValue !== undefined) {
+            this._values.push(newValue);
+            if (this._values.length > 10) {
+                this._values.shift();
+            }
+        }
+    }
 
     ngOnInit() {
-        this.values = [];
-        if (this.listObservable) {
-            this.listObservable.subscribe(values => {
-                this.values.push(values);
-                if (this.values.length > 5) {
-                    this.values.shift();
-                }
-            });
-        }
+        this._values = [];
     }
 }
